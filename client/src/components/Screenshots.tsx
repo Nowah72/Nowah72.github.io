@@ -1,11 +1,13 @@
 import { Card } from "@/components/ui/card";
 
 const screenshots = [
-  { title: "Pattern Library", emoji: "📚" },
-  { title: "Interactive Learning", emoji: "📊" },
-  { title: "Progress Dashboard", emoji: "📈" },
-  { title: "Quiz Interface", emoji: "✅" },
-  { title: "Dark Mode", emoji: "🌙" },
+  { title: "Interactive Lessons", image: "/attached_assets/lesson_1764086592743.PNG" },
+  { title: "Market Analysis", image: "/attached_assets/market_1764086592743.PNG" },
+  { title: "Pattern Scanner", image: "/attached_assets/sacnner_1764086592744.PNG" },
+  { title: "Trading Simulator", image: "/attached_assets/sim_1764086592744.PNG" },
+  { title: "Drawing Tools", image: "/attached_assets/drawing_1764086858883.PNG" },
+  { title: "Flashcards", image: "/attached_assets/flashcards_1764086858883.PNG" },
+  { title: "Quiz Practice", image: "/attached_assets/quiz_1764086888488.PNG" },
 ];
 
 export default function Screenshots() {
@@ -30,15 +32,12 @@ export default function Screenshots() {
             >
               <div className="w-[280px]">
                 <Card className="overflow-hidden shadow-xl">
-                  <div className="aspect-[9/19] bg-gradient-to-br from-primary/10 to-background flex items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="text-6xl">{screenshot.emoji}</div>
-                      <div className="text-sm font-medium text-muted-foreground">
-                        Replace with screenshot
-                        <br />
-                        <code className="text-xs">@assets/screenshot-{index + 1}.png</code>
-                      </div>
-                    </div>
+                  <div className="aspect-[9/19] bg-card">
+                    <img 
+                      src={screenshot.image} 
+                      alt={screenshot.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </Card>
                 <p className="text-center mt-4 font-medium" data-testid={`text-screenshot-title-${index}`}>

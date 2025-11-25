@@ -16,9 +16,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-                <span className="text-lg font-bold text-primary-foreground">C</span>
-              </div>
+              <img 
+                src="/attached_assets/Logo(blue+fed65e)_00000_1764086552151.png" 
+                alt="Candlesticks101 Logo" 
+                className="h-8 w-8 rounded-md"
+              />
               <span className="text-xl font-bold">Candlesticks101</span>
             </div>
             <p className="text-sm text-muted-foreground" data-testid="text-footer-tagline">
@@ -56,13 +58,25 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Download App</h3>
             <div className="space-y-3">
-              <Button variant="outline" size="sm" className="w-full justify-start gap-2" data-testid="button-footer-google-play">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="w-full justify-start gap-2"
+                onClick={() => window.open("https://play.google.com/store/apps/details?id=com.david.candlesticks101", "_blank")}
+                data-testid="button-footer-google-play"
+              >
                 <SiGoogleplay className="h-4 w-4" />
                 Google Play
               </Button>
-              <Button variant="outline" size="sm" className="w-full justify-start gap-2" data-testid="button-footer-app-store">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="w-full justify-start gap-2 opacity-50 cursor-not-allowed"
+                disabled
+                data-testid="button-footer-app-store"
+              >
                 <SiApple className="h-5 w-5" />
-                App Store
+                App Store (Coming Soon)
               </Button>
             </div>
             <div className="flex gap-3 mt-6">

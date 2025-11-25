@@ -18,9 +18,11 @@ export default function Header() {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-              <span className="text-lg font-bold text-primary-foreground">C</span>
-            </div>
+            <img 
+              src="/attached_assets/Logo(blue+fed65e)_00000_1764086552151.png" 
+              alt="Candlesticks101 Logo" 
+              className="h-8 w-8 rounded-md"
+            />
             <span className="text-xl font-bold">Candlesticks101</span>
           </div>
 
