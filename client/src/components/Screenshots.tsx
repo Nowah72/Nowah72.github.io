@@ -1,7 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const screenshots = [
   { title: "Interactive Lessons", image: "/lesson_1764086592743.PNG" },
@@ -15,6 +13,18 @@ const screenshots = [
 
 export default function Screenshots() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (itemsRef.current[currentIndex]) {
+      itemsRef.current[currentIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [currentIndex]);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? screenshots.length - 1 : prev - 1));
@@ -36,23 +46,35 @@ export default function Screenshots() {
           </p>
         </div>
 
-        <div className="relative flex items-center justify-center gap-4">
-          <Button
-            size="icon"
-            variant="outline"
+        <div className="relative flex items-center justify-center gap-8 lg:gap-12">
+          <button
             onClick={goToPrevious}
-            className="absolute left-0 z-10"
+            className="flex-shrink-0 z-10 group transition-all duration-300 hover:scale-110 active:scale-95"
             data-testid="button-prev-screenshot"
+            aria-label="Previous screenshot"
           >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 blur-lg group-hover:bg-primary/40 transition-all rounded-full" />
+              <div className="relative flex h-14 w-14 lg:h-16 lg:w-16 items-center justify-center rounded-full border-2 border-primary bg-background/80 backdrop-blur group-hover:bg-primary/10 transition-all">
+                <svg className="h-8 w-8 lg:h-10 lg:w-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </div>
+            </div>
+          </button>
 
-          <div className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory custom-scrollbar max-w-4xl">
+          <div
+            ref={containerRef}
+            className="flex gap-8 pb-4 overflow-x-hidden scroll-smooth"
+          >
             {screenshots.map((screenshot, index) => (
               <div
                 key={index}
-                className={`flex-shrink-0 snap-center transition-opacity duration-300 ${
-                  index === currentIndex ? "opacity-100" : "opacity-50"
+                ref={(el) => {
+                  itemsRef.current[index] = el;
+                }}
+                className={`flex-shrink-0 transition-all duration-300 ${
+                  index === currentIndex ? "scale-100 opacity-100" : "scale-90 opacity-60"
                 }`}
                 data-testid={`screenshot-${index}`}
               >
@@ -74,15 +96,21 @@ export default function Screenshots() {
             ))}
           </div>
 
-          <Button
-            size="icon"
-            variant="outline"
+          <button
             onClick={goToNext}
-            className="absolute right-0 z-10"
+            className="flex-shrink-0 z-10 group transition-all duration-300 hover:scale-110 active:scale-95"
             data-testid="button-next-screenshot"
+            aria-label="Next screenshot"
           >
-            <ChevronRight className="h-5 w-5" />
-          </Button>
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 blur-lg group-hover:bg-primary/40 transition-all rounded-full" />
+              <div className="relative flex h-14 w-14 lg:h-16 lg:w-16 items-center justify-center rounded-full border-2 border-primary bg-background/80 backdrop-blur group-hover:bg-primary/10 transition-all">
+                <svg className="h-8 w-8 lg:h-10 lg:w-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </button>
         </div>
 
         <div className="flex justify-center gap-2 mt-8">
