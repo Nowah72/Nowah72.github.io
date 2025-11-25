@@ -23,7 +23,7 @@ export default function Screenshots() {
           </p>
         </div>
 
-        <div className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scrollbar-hide">
+        <div className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory custom-scrollbar">
           {screenshots.map((screenshot, index) => (
             <div
               key={index}
